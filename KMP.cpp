@@ -53,7 +53,7 @@ vector<int> preComputeLPS(string text){
 void findOccurenceByKMP(string text, string pat){
   if(text.size()==0 or pat.size()==0)return;
 
-  vector<int> lps = preComputeLPS(text);
+  vector<int> lps = preComputeLPS(pat);
   int i=0;
   int j=0;
   int sz = text.size();
@@ -81,11 +81,10 @@ int main()
   // freopen("input.txt","r",stdin);
   // freopen("output.txt","w",stdout);
   ll t=1;
-  s(t);
+  // s(t);
   while(t--){
     string text,pat;
     cin>>text>>pat;
     findOccurenceByKMP(text,pat);
   }
 }
-// USELESS COMMENT
