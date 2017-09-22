@@ -1,2 +1,2 @@
-# HackerRank-Problems
-Contains the solution for the HackerRank problems 
+# Competitive Programming -Problems
+Contains the solution for the Competitive Programming problems 
