@@ -1,3 +1,5 @@
+// https://code.google.com/codejam/contest/3254486/dashboard#s=p0&a=0
+
 #include<bits/stdc++.h>
 #include<unordered_set>
 using namespace std;
