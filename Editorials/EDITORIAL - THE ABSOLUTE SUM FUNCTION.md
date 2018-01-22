@@ -61,9 +61,9 @@ int main()
     }
 
      vector<ll>dp[2];
-     // dp[0][i] means maximum achievable sum by placing 1 at index i
+     // dp[0][i] means maximum achievable sum by placing 1 at index i using the first `i` elements only.
     dp[0]=vector<ll>(n,0ll);  
-     // dp[1][i] means maximum achievable sum by placing ar[i] at index i
+     // dp[1][i] means maximum achievable sum by placing ar[i] at index i using the first `i` elements only.
     dp[1]=vector<ll>(n,0ll);
 
     for(ll i=1;i<n;i++){

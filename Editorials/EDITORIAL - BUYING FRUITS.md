@@ -4,6 +4,8 @@
 This is a very simple question based on dynamic programming. Here, we have to just think how we can compute the minimum price of the fruits till the ith fruit seller using the answer for all the fruit selles till the `(i-1)`<sup>th</sup> fruit seller.
 As it is given that we can not purchase the same fruit from the adjacent fruit sellers, i.e. if we purchase apples from shop `i`, we can not purchase apples from shop `i+1` and shop `i-1`.Same for apples and oranges.So we will simply find the minimum cost possible if we purchase each of these fruits from each of the shops.
 So `dp[i][j]` indicates the minimum cost of shopping if the j<sup>th</sup> fruit is purchased from shop `i`(considering only till `i`<sup>th</sup> shop).
+Finally take the minimum of `dp[i][j]` for i=n and j=0,1,2 as it will have considered for  
+Refer below commented code for implementation details.
 
 _**Time Complexity:** O(N)_ where N = number of fruit sellers
 

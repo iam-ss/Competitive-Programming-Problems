@@ -29,7 +29,7 @@ ll gcd(ll a , ll b){return b==0?a:gcd(b,a%b);}
 int main()
 {
   // freopen("input.txt","r",stdin);
-   freopen("output.txt","w",stdout);
+   // freopen("output.txt","w",stdout);
   ll t=1;
   // s(t);
   while(t--){

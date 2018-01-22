@@ -13,7 +13,7 @@ Then just traverse to each room and compute the `dp[i]` values for each `i` in t
 > If portal 2 takes back to the same room, then dp[i] will be 2 because using portal 2 it will come back to the same room at the first(odd) time it enters room i and then using portal 1, he will move to the next room as it will be the second(even) time he enters the room `i`.
 
 > If portal 2 takes to some previous room a, then Singham will use portal 2 to go to the room a, then come back to room i, then use portal 1 to move ahead, so in order to find out the number of portals to move from room a to room i, we will be maintaining a cumulative sum array containing the cumulative sum of the number of portals needed to move from room i to room i+1 for every room from 1 to i.
-Hence , the total number of portals will be `2+sum[i-1]-sum[a-1]`.
+Hence , the total number of portals will be `2 + sum[i-1] - sum[a-1]`.
 
 _**Time Complexity:** O(N)_ where N is the total Number Of Rooms in the maze.
 

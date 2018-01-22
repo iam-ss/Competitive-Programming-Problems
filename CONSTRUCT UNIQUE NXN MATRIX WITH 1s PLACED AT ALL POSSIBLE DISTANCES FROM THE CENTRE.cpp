@@ -1,4 +1,4 @@
-// https://www.hackerrank.com/contests/visa-codesprint/challenges/visa-checksum/problem
+// https://www.geeksforgeeks.org/construct-unique-matrix-n-x-n-input-n/
 
 #include<bits/stdc++.h>
 #include<unordered_set>
@@ -29,50 +29,58 @@ ll gcd(ll a , ll b){return b==0?a:gcd(b,a%b);}
 
 /****************************************************************************/
 
-ll dp[5000][600];
-ll mo;
+class SquareMatrix{
+  vector<vector<ll>> mat;
+  ll sz;
 
-ll solve(ll sum,ll ind){
-  
-  if(sum<0)return 0ll;
-
-  if(ind==0){
-    if(sum==0)return 1ll;
-    return 0ll;
+  void fillMatrix(ll i,ll j){
+    ll toFill = 1;
+    F(in,i,sz-1)mat[in][j]=toFill++;
+    F(in,0,i-1)mat[in][j]=toFill++;
   }
 
-  if(dp[sum][ind]!=-1)return dp[sum][ind];
-  ll numOfCards=0ll;
-  for(ll i=0;i<10;i++){
-    ll num=i;
-    if(num%2 ==0){
-      num=2*num;
-      if(num>9)num-=9;
-    }
+public:
+  SquareMatrix(ll n=0):sz(n){
+    assert(n%2 != 0);
+    mat = vector<vector<ll>>(n,vector<ll>(n,0));
+  }
 
-    numOfCards+=solve(sum-num,ind-1);
-    numOfCards%=mod;
-  } 
-  return dp[sum][ind]=numOfCards;
-}
+  void printMatrix(){
+    F(i,0,sz-1){
+      F(j,0,sz-1){
+        cout<<mat[i][j]<<" ";
+      }
+      cout<<endl;
+    }
+  }
+
+  void constructMatrix(){
+    ll rt=sz-1;
+    ll lf=0;
+    F(i,0,sz-1){
+      if(!(i&1)){
+        fillMatrix(i,rt);
+        rt--;
+      }else{
+        fillMatrix(i,lf);
+        lf++;
+      }
+    }
+  }
+};
 
 int main()
 {
   freopen("input.txt","r",stdin);
    // freopen("output.txt","w",stdout);
   ll t=1;
-  s(t);
-  memset(dp,-1,sizeof(dp));
+  // s(t);
   while(t--){
-    
-    ll x;
-    s2(x,mo);
-    ll ans=0ll;
-    for(ll sum=0ll;sum<=x*9;sum+=mo){
-      ans+=solve(sum,x);
-      ans%=mod;
-    }  
-    p(ans);
+    ll n;
+    s(n);
+    SquareMatrix matrix(n);
+    matrix.constructMatrix();
+    matrix.printMatrix();
   }
   return 0;
  }

@@ -38,8 +38,8 @@ double solve(ll n, ll w){
 
   if(dp[n][w]>=0.0)return dp[n][w];
 
-  // Either we kill the bird 1 with p1 percentage and try to secure the remaining w-x points with n-1 coins
-  // or we miss the shot with 1-p1 percentage and try to secure the remaining w points with n-1 coins.
+  // Either we kill the bird 1 with p1 percentage and try to obtain the remaining w-x points with n-1 coins
+  // or we miss the shot with 1-p1 percentage and try to obtain the remaining w points with n-1 coins.
   double c1 = p1*solve(n-1,w-x) + (1-p1)*solve(n-1,w);
 
   // Same as above

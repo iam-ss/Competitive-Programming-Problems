@@ -1,4 +1,4 @@
-// https://www.hackerrank.com/contests/visa-codesprint/challenges/visa-checksum/problem
+// https://code.google.com/codejam/contest/7254486/dashboard#s=p1&a=0
 
 #include<bits/stdc++.h>
 #include<unordered_set>
@@ -29,50 +29,31 @@ ll gcd(ll a , ll b){return b==0?a:gcd(b,a%b);}
 
 /****************************************************************************/
 
-ll dp[5000][600];
-ll mo;
-
-ll solve(ll sum,ll ind){
-  
-  if(sum<0)return 0ll;
-
-  if(ind==0){
-    if(sum==0)return 1ll;
-    return 0ll;
-  }
-
-  if(dp[sum][ind]!=-1)return dp[sum][ind];
-  ll numOfCards=0ll;
-  for(ll i=0;i<10;i++){
-    ll num=i;
-    if(num%2 ==0){
-      num=2*num;
-      if(num>9)num-=9;
-    }
-
-    numOfCards+=solve(sum-num,ind-1);
-    numOfCards%=mod;
-  } 
-  return dp[sum][ind]=numOfCards;
-}
-
 int main()
 {
   freopen("input.txt","r",stdin);
-   // freopen("output.txt","w",stdout);
+   freopen("output.txt","w",stdout);
   ll t=1;
+  ll tc=1;
   s(t);
-  memset(dp,-1,sizeof(dp));
   while(t--){
-    
-    ll x;
-    s2(x,mo);
-    ll ans=0ll;
-    for(ll sum=0ll;sum<=x*9;sum+=mo){
-      ans+=solve(sum,x);
-      ans%=mod;
-    }  
-    p(ans);
+    ll E,n;
+    s2(E,n);
+    vector<ll> dance(n);
+    F(i,0,n-1)cin>>dance[i];
+    sort(dance.begin(),dance.end());
+    ll lo=0;
+    ll hi=n-1;
+    ll hon=0;
+    ll ene=E;
+    ll maxHon=0;
+    while(lo<=hi){
+      if(ene-dance[lo]>0){ene-=dance[lo++]; hon++; }
+      else if(hon>0){ ene+=dance[hi--]; hon--; }
+      else break;
+      maxHon=max(maxHon,hon);
+    }
+    cout<<"Case #"<<tc++<<": "<<maxHon<<endl;
   }
   return 0;
  }

@@ -28,7 +28,7 @@ ll gcd(ll a , ll b){return b==0?a:gcd(b,a%b);}
 
 int main()
 {
-  // freopen("input.txt","r",stdin);
+  freopen("input.txt","r",stdin);
    // freopen("output.txt","w",stdout);
   ll t=1;
   // s(t);
@@ -65,8 +65,8 @@ int main()
         fg=1;
         break;
       }
-      // If the matrix element is greater than number, we must check in the previous column as that will 
-      // contain lower numbers.
+      // If the matrix element is greater than number, we must check in the previous column as that
+      // will contain lower numbers.
       if(mat[row][col]>num)col--;
       else row++; // Else check in the next row which will contain higher numbers.
     }
@@ -75,6 +75,7 @@ int main()
     else cout<<"0"<<endl;
   }
 }
+
 
 
 // 2

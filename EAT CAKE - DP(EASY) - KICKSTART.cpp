@@ -1,4 +1,4 @@
-// https://www.hackerrank.com/contests/visa-codesprint/challenges/visa-checksum/problem
+// https://code.google.com/codejam/contest/7254486/dashboard#s=p3&a=3
 
 #include<bits/stdc++.h>
 #include<unordered_set>
@@ -29,50 +29,29 @@ ll gcd(ll a , ll b){return b==0?a:gcd(b,a%b);}
 
 /****************************************************************************/
 
-ll dp[5000][600];
-ll mo;
-
-ll solve(ll sum,ll ind){
-  
-  if(sum<0)return 0ll;
-
-  if(ind==0){
-    if(sum==0)return 1ll;
-    return 0ll;
-  }
-
-  if(dp[sum][ind]!=-1)return dp[sum][ind];
-  ll numOfCards=0ll;
-  for(ll i=0;i<10;i++){
-    ll num=i;
-    if(num%2 ==0){
-      num=2*num;
-      if(num>9)num-=9;
-    }
-
-    numOfCards+=solve(sum-num,ind-1);
-    numOfCards%=mod;
-  } 
-  return dp[sum][ind]=numOfCards;
+ll dp[20000];
+ll solve(ll n){
+  if(n<0)return (ll)INT_MAX;
+  if(n==0)return 0;
+  if(dp[n]!=-1)return dp[n];
+  ll up = floor(sqrt(n));
+  ll ans = (ll)INT_MAX;
+  RF(i,up,1)ans=min(ans,1+solve(n-i*i));
+  return dp[n]=ans;
 }
 
 int main()
 {
   freopen("input.txt","r",stdin);
-   // freopen("output.txt","w",stdout);
-  ll t=1;
+   freopen("output.txt","w",stdout);
+  ll t=1,tc=1;
   s(t);
   memset(dp,-1,sizeof(dp));
   while(t--){
-    
-    ll x;
-    s2(x,mo);
-    ll ans=0ll;
-    for(ll sum=0ll;sum<=x*9;sum+=mo){
-      ans+=solve(sum,x);
-      ans%=mod;
-    }  
-    p(ans);
+    ll n;
+    s(n);
+    ll ans = solve(n);
+    cout<<"Case #"<<tc++<<": "<<ans<<endl;  
   }
   return 0;
  }

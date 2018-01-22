@@ -1,5 +1,4 @@
-// https://www.hackerrank.com/contests/visa-codesprint/challenges/visa-checksum/problem
-
+// https://www.hackerrank.com/contests/visa-codesprint/challenges/fee-queries/problem
 #include<bits/stdc++.h>
 #include<unordered_set>
 using namespace std;
@@ -29,31 +28,23 @@ ll gcd(ll a , ll b){return b==0?a:gcd(b,a%b);}
 
 /****************************************************************************/
 
-ll dp[5000][600];
-ll mo;
+vector<ll> ar;
+vector<ll> BIT;
 
-ll solve(ll sum,ll ind){
-  
-  if(sum<0)return 0ll;
-
-  if(ind==0){
-    if(sum==0)return 1ll;
-    return 0ll;
+void updateBit(ll ind,ll val){
+  while(ind<5000001){
+    BIT[ind]+=val;
+    ind+=ind&-ind;
   }
+}
 
-  if(dp[sum][ind]!=-1)return dp[sum][ind];
-  ll numOfCards=0ll;
-  for(ll i=0;i<10;i++){
-    ll num=i;
-    if(num%2 ==0){
-      num=2*num;
-      if(num>9)num-=9;
-    }
-
-    numOfCards+=solve(sum-num,ind-1);
-    numOfCards%=mod;
-  } 
-  return dp[sum][ind]=numOfCards;
+ll RMQ(ll ind){
+  ll ans=0ll;
+  while(ind>0){
+    ans+=BIT[ind];
+    ind-=ind&-ind;
+  }
+  return ans;
 }
 
 int main()
@@ -61,18 +52,33 @@ int main()
   freopen("input.txt","r",stdin);
    // freopen("output.txt","w",stdout);
   ll t=1;
-  s(t);
-  memset(dp,-1,sizeof(dp));
+  // s(t);
   while(t--){
-    
-    ll x;
-    s2(x,mo);
-    ll ans=0ll;
-    for(ll sum=0ll;sum<=x*9;sum+=mo){
-      ans+=solve(sum,x);
-      ans%=mod;
-    }  
-    p(ans);
+    ll n,q;
+    s2(n,q);
+    ar.resize(n+5);
+    BIT.resize(5000000+5,0);
+    F(i,0,n-1){
+      cin>>ar[i];
+      updateBit(ar[i],1ll);
+    }
+
+    while(q--){
+      string query;
+      cin>>query;
+      if(query=="count"){
+        ll x;
+        s(x); 
+        cout<< RMQ(5000000)-RMQ(x-1)<<endl;
+      }
+      else{
+        ll i,x;
+        s2(i,x);
+        updateBit(ar[i],-1ll);
+        ar[i]=x;
+        updateBit(ar[i],1ll);
+      }
+    }
   }
   return 0;
  }
